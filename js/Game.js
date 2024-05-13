@@ -102,7 +102,7 @@ class ExtremeGame extends Game{
         $(".sky").css("backgroundImage", "url(resources/sprites/background/sky3.png)");
         $(".sky").mousedown(()=>this.startAutoShooting(event));
         $(".sky").mouseup(()=>this.stopAutoShooting(event));
-        $("#gunIcon").attr("src", "../resources/sprites/weapons/auto.png");
+        $("#gunIcon").attr("src", "resources/sprites/weapons/auto.png");
     }
 
     saveCurrentCoordinates(){
