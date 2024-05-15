@@ -10,7 +10,9 @@
     <script src="js/JQuery/jquery-3.3.1.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"></script>
+    <link rel="manifest" href="manifest.json" />
+       
 </head>
 <body>
 
@@ -150,6 +152,12 @@
     <script src="js/Game.js" defer="true"></script>
     <script src="js/StartScreen.js" defer="true"></script>
     <script src="js/Application.js" defer="true"></script>
+    <script>
+        if (typeof navigator.serviceWorker !== 'undefined') 
+            {
+                navigator.serviceWorker.register('sw.js')
+            }
+    </script>
 
     <script>
         function registerUser() {
