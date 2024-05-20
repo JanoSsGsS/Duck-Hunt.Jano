@@ -6,7 +6,7 @@
   "orientation": "any",
   "scope": "/",
   "short_name": "DuckHunt",
-  "start_url": "/Duck-Hunt.Jano/html/index.html",
+  "start_url": "/Duck-Hunt.Jano/index.html",
   "theme_color": "#97fffe",
   "icons": [
     {
