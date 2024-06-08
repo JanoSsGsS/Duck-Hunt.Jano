@@ -12,10 +12,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"></script>
     <link rel="manifest" href="manifest.json" />
-       
 </head>
 <body>
-
     <div id="rankingContainer">
         <h1>Ranking:</h1>
         <ul id="rankingList"></ul>
@@ -62,19 +60,13 @@
         </div>
     </div>
 
-
     <div id="sky" class="sky">
-
         <div class="comboMessage"></div>
-
         <div class="dog" id="dog1"></div>
-
         <div class="dog" id="dog2"></div>
-
         <div id="pointsCounter">
             <h2 id="levelCount">1</h2>
         </div>
-
         <div class="bushes">
             <div class="barRow">
                 <div class="rowCell ammunitionCell" id="shots">
@@ -86,7 +78,6 @@
                         <img id="gunIcon" src="resources/sprites/weapons/gun.png" alt="">
                     </div>
                 </div>
-
                 <div class="rowCell" id="hit" style="width:40%;">
                     <div class="lifesIcons">
                         <img id="life1" src="resources/sprites/scoreImages/life.png" alt="">
@@ -100,7 +91,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="rowCell scoreCell" id="score">
                     <h2 id="scoreCount">0</h2>
                     <h2>SCORE</h2>
@@ -135,11 +125,8 @@
                     <td>ACCURACY</td>
                     <td id="accuracySummary"></td>
                 </tr>
-
             </table>
-
             <h3 id="playAgainButton" class="cursorChange" onClick="window.location.reload()">PLAY AGAIN</h3>
-        
         </div>
     </div>
 
@@ -153,20 +140,42 @@
     <script src="js/StartScreen.js" defer="true"></script>
     <script src="js/Application.js" defer="true"></script>
     <script>
-        if (typeof navigator.serviceWorker !== 'undefined') 
-            {
-                navigator.serviceWorker.register('sw.js')
-            }
-    </script>
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('sw.js');
+        }
 
-    <script>
         function registerUser() {
             var username = document.getElementById("username").value;
             // Guardar el nombre de usuario en el almacenamiento local
             localStorage.setItem('username', username);
             alert("Bienvenido, " + username + "!");
         }
-    </script>
 
+        // Agregar listener para el evento de movimiento del dispositivo
+        let shakeThreshold = 15;
+        let lastShakeTime = new Date().getTime();
+
+        window.addEventListener('devicemotion', function(event) {
+            let acceleration = event.accelerationIncludingGravity;
+            let currentTime = new Date().getTime();
+            
+            if (acceleration) {
+                let shakeMagnitude = Math.sqrt(acceleration.x * acceleration.x + acceleration.y * acceleration.y + acceleration.z * acceleration.z);
+                if (shakeMagnitude > shakeThreshold) {
+                    if (currentTime - lastShakeTime > 1000) {
+                        lastShakeTime = currentTime;
+                        launchApplication();
+                    }
+                }
+            }
+        });
+
+        function launchApplication() {
+            var startScreen = new StartScreen();
+            startScreen.hideStartScreen();
+            // Aquí deberías iniciar tu juego
+            console.log("Juego iniciado");
+        }
+    </script>
 </body>
 </html>

@@ -35,8 +35,6 @@ class StartScreen {
             }
         }
         this.displaySettingsForCurrentMode();
-
-        // Guardar el índice del modo actual en el local storage como objeto JSON
         localStorage.setItem('currentModeIndex', JSON.stringify(this.currentModeIndex));
     }
 
