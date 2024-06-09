@@ -151,7 +151,7 @@
             alert("Bienvenido, " + username + "!");
         }
 
-        // Funcionalidad para iniciar el juego al sacudir el dispositivo
+        // Agregar listener para el evento de movimiento del dispositivo
         let shakeThreshold = 15;
         let lastShakeTime = new Date().getTime();
 
@@ -176,26 +176,14 @@
             // Aquí deberías iniciar tu juego
             console.log("Juego iniciado");
         }
-
-        // Funcionalidad para reiniciar el juego al voltear el dispositivo
-        let isGameOver = false;
-
-        function enableDeviceOrientationListener() {
-            window.addEventListener('deviceorientation', function(event) {
-                if (isGameOver) {
-                    let beta = event.beta; // Inclinación del dispositivo
-                    if (beta > 160 || beta < -160) { // Si el dispositivo está volteado
-                        window.location.reload();
-                    }
-                }
-            });
-        }
-
-        function gameOver() {
-            isGameOver = true;
-            enableDeviceOrientationListener();
-            document.getElementById("overlay").style.display = "block";
-        }
+    </script>
+    <script>
+        window.addEventListener('deviceorientation', function(event) {
+            if (event.beta > 90 || event.beta < -90) {
+                // Detectar el volteo del dispositivo
+                window.location.reload();
+            }
+        });
     </script>
 </body>
 </html>
