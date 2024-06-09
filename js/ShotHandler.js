@@ -7,6 +7,8 @@ class ShotHandler {
         //this.successfulShots = parseInt(localStorage.getItem('successfulShots')) || 0; // Recuperar el número de disparos exitosos del local storage
     }
 
+    
+
     getAmmoNumber() {
         return this.ammo;
     }
@@ -38,6 +40,8 @@ class ShotHandler {
             if (this.isShotOnDuck(mouseX, mouseY, duckPosition) && duck.isAlive) {
                 duck.fallDown();
                 numberOfSuccessfulHits++;
+                // Llamar a la función para vibrar el dispositivo
+                this.vibrateDevice();
             }
         }
         if (numberOfSuccessfulHits > 1) {
@@ -82,6 +86,15 @@ class ShotHandler {
 
     disablehooting() {
         $("#shootBlocker").show();
+
+        
+    }
+
+    vibrateDevice() {
+        if ("vibrate" in navigator) {
+            // Vibrar el dispositivo por 200 milisegundos
+            navigator.vibrate(200);
+        }
     }
 }
 
